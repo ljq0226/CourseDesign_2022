@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.46.0/dist/full.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>task5基因序列</title>
+</head>
+<body>
+  <div class="mt-10 ml-20">
+    <div class="mb-10">
+      <p class="underline">请输入含有AGCT这四种字母的基因序列(别输错了哈)</p>
+      <p class="underline">默认示例：AGTGATG  /GTTAG</p>
+    </div>
+    <div>
+      X序列：<input type="text" placeholder="" class="str1 input input-bordered input-primary w-full max-w-xs" />
+      Y序列：<input type="text" placeholder="" class="str2 input input-bordered input-primary w-full max-w-xs" />
+      <button class="gene btn btn-primary">生成</button>
+    </div>
+    <div>
+    </div>
+    <div>
+      <div class="w-1/2">
+        <table class="table table-compact w-full">
+          <tbody class="tableList">
+          </tbody>
+        </table>
+      </div>
+      <div class="">
+        相似度:<p class="res_du text-2xl text-purple-500"></p>
+        对齐方案:<div class="res_str text-2xl text-purple-500">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./task5.js"></script>
+</body>
+
+</html>
