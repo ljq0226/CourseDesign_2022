@@ -20,17 +20,14 @@ candidates 中的 同一个 数字可以 无限制重复被选取 。如果至�
  * @return {number[][]}
  */
 var combinationSum = function (candidates, target) {
-
   const res = []
   const path = []
   candidates.sort((a, b) => a - b)
-
   const dfs = (index, sum) => {
     if (sum === target) {
       res.push(Array.from(path))
       return
     }
-
     for (let i = index; i < candidates.length; i++) {
       const n = candidates[i]
       //如果下一层的sum（就是本层的 sum + candidates[i]）已经大于target，就可以结束本轮for循环的遍历
@@ -47,3 +44,10 @@ var combinationSum = function (candidates, target) {
   dfs(0, 0)
   return res
 };
+
+
+const candidates = [2,3,6,7]
+const target = 7
+console.log('输入的cadidates为:',candidates);
+const res = combinationSum(candidates, target)
+console.log('输出的结果为:',res)

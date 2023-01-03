@@ -29,6 +29,10 @@ var wiggleMaxLength = function(nums) {
 
 
 /* 
-时间复杂度：O(n)O(n)，其中 nn 是序列的长度。我们只需要遍历该序列一次。
-空间复杂度：O(1)O(1)。我们只需要常数空间来存放若干变量。
+时间复杂度：O(n)，其中 nn 是序列的长度。我们只需要遍历该序列一次。
+空间复杂度：O(1)。我们只需要常数空间来存放若干变量。
 */
+const nums = [1,17,5,10,13,15,10,5,16,8]
+console.log('输入的数组为:',nums);
+const res = wiggleMaxLength(nums)
+console.log('输出的结果为:',res);
