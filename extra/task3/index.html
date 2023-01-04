@@ -5,42 +5,33 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>task3</title>
+  <title>task3篱笆问题</title>
   <link href="https://cdn.jsdelivr.net/npm/daisyui@2.46.0/dist/full.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
- <body>
-<div class="alert alert-warning  shadow-lg " style="display: none;position:fixed;">
-  <div>
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-      class="stroke-current flex-shrink-0 w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-    </svg>
-    <span>暂无，敬请期待</span>
-  </div>
-</div>
-<div class="underline text-lg mx-10 pt-10 ">
-  <p>· 输入完y坐标后摁Enter键 进行下一个坐标的输入</p>
-  <p>· 坐标的取值范围为(0,500)</p>
-  <p>· 默认示例坐标[[50, 30], [200, 100], [300, 200], [300, 250], [300, 300], [400, 400]]</p>
-</div>
-<div class="flex ">
-  <canvas id="canvas" class="m-20 p-10 border border-purple-500" width="500" height="500"></canvas>
-  <div class="mt-20">
-    <div class="inputGroups">
-      <input type="text" placeholder="x坐标" class="input input-bordered input-primary w-full max-w-xs" />
-      <input type="text" placeholder="y坐标" class="textY input input-bordered input-primary w-full max-w-xs" />
-    </div>
-    <button class="clearBtn btn btn-primary ">清除幕布</button>
-    <button class="btn btn-primary getShapeBtn">生成</button>
-    <div class="points">
-      <span class="indicator-item badge badge-primary">points</span>
-      <div class="pointsDiv grid w-1/2 h-52 bg-base-300 place-items-center"></div>
-    </div>
 
+<body>
+  <div class="underline text-lg mx-10 pt-10 ">
+    <p>· 输入完y坐标后摁Enter键 进行下一个坐标的输入</p>
+    <p>· 坐标的取值范围为(0,500)</p>
+    <p>· 默认示例坐标[[50, 30], [200, 100], [300, 200], [300, 250], [300, 300], [400, 400]]</p>
   </div>
-</div>
+  <div class="flex ">
+    <canvas id="canvas" class="m-20 p-10 border border-purple-500" width="500" height="500"></canvas>
+    <div class="mt-20">
+      <div class="inputGroups">
+        <input type="text" placeholder="x坐标" class="input input-bordered input-primary w-full max-w-xs" />
+        <input type="text" placeholder="y坐标" class="textY input input-bordered input-primary w-full max-w-xs" />
+      </div>
+      <button class="clearBtn btn btn-primary ">清除幕布</button>
+      <button class="btn btn-primary getShapeBtn">生成</button>
+      <div class="points">
+        <span class="indicator-item badge badge-primary">points</span>
+        <div class="pointsDiv grid w-1/2 h-52 bg-base-300 place-items-center"></div>
+      </div>
+
+    </div>
+  </div>
 
 
 

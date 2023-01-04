@@ -24,8 +24,8 @@ function init() {
   console.time('bruteForce')
   let bruteForcePoints = bruteForce(testPoints);
   console.timeEnd('bruteForce')
-  console.log('Andrew算法生成的点',andrewPoints);
-  console.log('暴力算法生成的点',bruteForcePoints);
+  //console.log('Andrew算法生成的点',andrewPoints);
+  //console.log('暴力算法生成的点',bruteForcePoints);
   drawShape(andrewPoints)
 }
 init()
@@ -80,18 +80,24 @@ function convexHull(points) {
   for (let i = 0; i < n; i++) {
     //两向量的叉积正负值来判断在左侧还是在右侧，若为正，则在左侧；若为负，则在右侧。
     while (stack.length >= 2 && cross(stack[stack.length - 2], stack[stack.length - 1], points[i]) <= 0) {
-      stack.pop();
+      // stack.pop();
+      console.log('stack pop:',stack.pop());
     }
+    console.log('i:',i,"points:",points[i]);
     stack.push(points[i]);
   }
+
 
   // 下凸包(从右到左维护下半部分的边界)
   for (let i = n - 1, t = stack.length + 1; i >= 0; i--) {
     while (stack.length >= t && cross(stack[stack.length - 2], stack[stack.length - 1], points[i]) <= 0) {
-      stack.pop();
+      // stack.pop();
+      console.log('stack pop:',stack.pop());
     }
+    console.log('j:',i,"points:",points[i]);
     stack.push(points[i]);
   }
+  console.log(stack);
   stack.pop();
   return stack;
 }

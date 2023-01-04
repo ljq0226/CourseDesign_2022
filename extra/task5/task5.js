@@ -5,9 +5,13 @@ const SCORING_MATRIX = {
   T: { A: -1, C: -2, G: -2, T: 5, "-": -1 },
   "-": { A: -3, C: -4, G: -2, T: -1, "-": 0 }
 };
+//操作DOM
 const tbody = document.querySelector('.tableList')
+const thead = document.querySelector('.thead')
 const res_du = document.querySelector('.res_du')
 const res_str = document.querySelector('.res_str')
+
+//动态规划
 function align(s1, s2) {
   console.log(s1, s2);
   // 初始化dp数组
@@ -33,7 +37,7 @@ function align(s1, s2) {
   }
 
   showBestWay(dp, s1, s2)
-  showList(dp)
+  showList(dp, s1, s2)
   console.log(dp);
   // 返回最后一个元素的值，即最大分数
   return dp[s1.length][s2.length];
@@ -115,11 +119,34 @@ function dfs(dp, arr1, arr2, x, y, list) {
   }
 }
 
-function showList(dp) {
-  tbody.innerHTML = ''
+
+//页面渲染
+function showList(dp, s1, s2) {
+  thead.innerHTML = ``
+  tbody.innerHTML = ``
+
+  thead.innerHTML += `
+    <th></th> 
+    <th></th> 
+  `
+  for (let i = 0; i < s2.length; i++) {
+    thead.innerHTML += `
+    <th>${s2[i]}</th> 
+    `
+  }
+  tbody.innerHTML += `
+  <tr>
+  <th>
+  </th>
+  </tr>
+  `
+
   for (let i = 0; i < dp.length; i++) {
     tbody.innerHTML += `
     <tr>
+    <th>
+    ${s1[i]}
+    </th>
     </tr>
     `
     for (let j = 0; j < dp[0].length; j++) {
