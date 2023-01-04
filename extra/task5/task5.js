@@ -140,7 +140,6 @@ function showList(dp, s1, s2) {
   </th>
   </tr>
   `
-
   for (let i = 0; i < dp.length; i++) {
     tbody.innerHTML += `
     <tr>
