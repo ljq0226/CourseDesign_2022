@@ -49,7 +49,17 @@ const minDistance = (word1, word2) => {
     }
   }
 
-  return dp[word1.length][word2.length];
+  return dp;
 };
 //看图2
-minDistance('horse', 'ros')
+const word1 = 'horse'
+const word2 = 'ros'
+const dp = minDistance(word1, word2);
+console.log('dp数组为:', dp);
+console.log('最小编辑距离为：', dp[word1.length][word2.length]);
+
+
+/* 
+时间复杂度 ：O(mn)，其中 m 为 word1 的长度，n 为 word2 的长度。
+空间复杂度 ：O(mn)，我们需要大小为 O(mn)的 D 数组来记录状态值。
+*/

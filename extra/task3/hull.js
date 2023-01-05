@@ -15,8 +15,8 @@ var ctx = canvas.getContext('2d');
 
 function init() {
   // 初始化实例 
-  // const testPoints = [[50, 30], [200, 100], [300, 200], [300, 250], [300, 300], [400, 400]];
-  const testPoints = [[133, 210], [10, 100], [331, 230], [40, 250], [300, 300], [400, 230]];
+  const testPoints = [[50, 30], [200, 100], [300, 200], [300, 250], [300, 300], [400, 400]];
+  // const testPoints = [[133, 210], [10, 100], [331, 230], [40, 250], [300, 300], [400, 230]];
   draw(testPoints)
   console.time('Andrew')
   const andrewPoints = convexHull(testPoints)
@@ -59,52 +59,6 @@ getShapeBtn.onclick = () => {
   setTimeout(() => {
     drawShape(hull)
   }, 1000);
-}
-
-/* 
-Andrew求解
-*/
-function convexHull(points) {
-  // 将点按照横坐标升序排序
-  points.sort((a, b) => a[0] - b[0]);
-
-  // 通过 Andrew(安德鲁)算法求凸包
-  const n = points.length;
-  let stack = [];
-
-  //最左边的点出发，然后一次枚举下一个点，如果下一个点在栈顶向量延长线的左侧
-  //（注意这里栈顶向量指的是栈顶第二个点指向站顶点的向量），那么我们就删去栈顶这个点，将新点入栈；
-  //若下一个点在栈顶那个向量延长线的右侧，就不用将栈顶点出栈，直接将新点入栈即可。这样找到最右边的点时，上边界就确定完了。
-
-  // 上凸包（从左到右维护上半部分的边界）
-  for (let i = 0; i < n; i++) {
-    //两向量的叉积正负值来判断在左侧还是在右侧，若为正，则在左侧；若为负，则在右侧。
-    while (stack.length >= 2 && cross(stack[stack.length - 2], stack[stack.length - 1], points[i]) <= 0) {
-      // stack.pop();
-      console.log('stack pop:',stack.pop());
-    }
-    console.log('i:',i,"points:",points[i]);
-    stack.push(points[i]);
-  }
-
-
-  // 下凸包(从右到左维护下半部分的边界)
-  for (let i = n - 1, t = stack.length + 1; i >= 0; i--) {
-    while (stack.length >= t && cross(stack[stack.length - 2], stack[stack.length - 1], points[i]) <= 0) {
-      // stack.pop();
-      console.log('stack pop:',stack.pop());
-    }
-    console.log('j:',i,"points:",points[i]);
-    stack.push(points[i]);
-  }
-  console.log(stack);
-  stack.pop();
-  return stack;
-}
-
-// 计算向量 OA 和 OB 的叉积
-function cross(O, A, B) {
-  return (A[0] - O[0]) * (B[1] - O[1]) - (A[1] - O[1]) * (B[0] - O[0]);
 }
 
 
@@ -153,6 +107,55 @@ function clearCanvas() {
   canvas.width = w;
   canvas.height = h;
 }
+
+
+/* 
+Andrew求解
+*/
+function convexHull(points) {
+  // 将点按照横坐标升序排序
+  points.sort((a, b) => a[0] - b[0]);
+
+  // 通过 Andrew(安德鲁)算法求凸包
+  const n = points.length;
+  let stack = [];
+
+  //最左边的点出发，然后一次枚举下一个点，如果下一个点在栈顶向量延长线的左侧
+  //（注意这里栈顶向量指的是栈顶第二个点指向站顶点的向量），那么我们就删去栈顶这个点，将新点入栈；
+  //若下一个点在栈顶那个向量延长线的右侧，就不用将栈顶点出栈，直接将新点入栈即可。这样找到最右边的点时，上边界就确定完了。
+
+  // 上凸包（从左到右维护上半部分的边界）
+  for (let i = 0; i < n; i++) {
+    //两向量的叉积正负值来判断在左侧还是在右侧，若为正，则在左侧；若为负，则在右侧。
+    while (stack.length >= 2 && cross(stack[stack.length - 2], stack[stack.length - 1], points[i]) <= 0) {
+      stack.pop();
+      // console.log('stack pop:',stack.pop());
+    }
+    // console.log('i:',i,"points:",points[i]);
+    stack.push(points[i]);
+  }
+
+
+  // 下凸包(从右到左维护下半部分的边界)
+  for (let i = n - 1, t = stack.length + 1; i >= 0; i--) {
+    while (stack.length >= t && cross(stack[stack.length - 2], stack[stack.length - 1], points[i]) <= 0) {
+      stack.pop();
+      // console.log('stack pop:',stack.pop());
+    }
+    // console.log('j:',i,"points:",points[i]);
+    stack.push(points[i]);
+  }
+  console.log(stack);
+  stack.pop();
+  return stack;
+}
+
+// 计算向量 OA 和 OB 的叉积
+function cross(O, A, B) {
+  return (A[0] - O[0]) * (B[1] - O[1]) - (A[1] - O[1]) * (B[0] - O[0]);
+}
+
+
 
 
 /* 

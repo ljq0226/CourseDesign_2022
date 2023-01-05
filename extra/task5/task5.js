@@ -11,6 +11,53 @@ const thead = document.querySelector('.thead')
 const res_du = document.querySelector('.res_du')
 const res_str = document.querySelector('.res_str')
 
+
+
+//页面渲染
+function showList(dp, s1, s2) {
+  thead.innerHTML = ``
+  tbody.innerHTML = ``
+
+  thead.innerHTML += `
+    <th></th> 
+    <th>-</th> 
+  `
+  for (let i = 0; i < s2.length; i++) {
+    thead.innerHTML += `
+    <th>${s2[i]}</th> 
+    `
+  }
+  tbody.innerHTML += `
+  <tr>
+  <th>
+  -
+  </th>
+  </tr>
+  `
+  for (let i = 0; i < dp.length; i++) {
+    tbody.innerHTML += `
+    <tr>
+    <th>
+    ${s1[i]}
+    </th>
+    </tr>
+    `
+    for (let j = 0; j < dp[0].length; j++) {
+      tbody.children[i].innerHTML += `
+      <td>${dp[i][j]}</td>
+      `
+    }
+  }
+}
+
+function showGene() {
+  const str1 = document.querySelector('.str1')
+  const str2 = document.querySelector('.str2')
+  align(str1.value, str2.value)
+}
+document.querySelector('.gene').addEventListener('click', showGene)
+
+
 //动态规划
 function align(s1, s2) {
   console.log(s1, s2);
@@ -118,47 +165,3 @@ function dfs(dp, arr1, arr2, x, y, list) {
     list.pop();
   }
 }
-
-
-//页面渲染
-function showList(dp, s1, s2) {
-  thead.innerHTML = ``
-  tbody.innerHTML = ``
-
-  thead.innerHTML += `
-    <th></th> 
-    <th></th> 
-  `
-  for (let i = 0; i < s2.length; i++) {
-    thead.innerHTML += `
-    <th>${s2[i]}</th> 
-    `
-  }
-  tbody.innerHTML += `
-  <tr>
-  <th>
-  </th>
-  </tr>
-  `
-  for (let i = 0; i < dp.length; i++) {
-    tbody.innerHTML += `
-    <tr>
-    <th>
-    ${s1[i]}
-    </th>
-    </tr>
-    `
-    for (let j = 0; j < dp[0].length; j++) {
-      tbody.children[i].innerHTML += `
-      <td>${dp[i][j]}</td>
-      `
-    }
-  }
-}
-
-function showGene() {
-  const str1 = document.querySelector('.str1')
-  const str2 = document.querySelector('.str2')
-  align(str1.value, str2.value)
-}
-document.querySelector('.gene').addEventListener('click', showGene)

@@ -25,8 +25,11 @@ const maxSatisfaction = (satisfaction) => {
     pre = 0
     for (let j = i; j < arr.length; j++) {
       pre += satisfaction[j] * (j - i + 1)
+      //贪心准则：当前满意度最大
       res = Math.max(res, pre)
     }
   }
   return res
 }
+const res = maxSatisfaction([-1,-8,0,5,-9])
+console.log('最大满意度为',res);
